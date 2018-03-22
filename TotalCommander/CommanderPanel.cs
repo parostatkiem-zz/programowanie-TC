@@ -21,6 +21,11 @@ namespace TotalCommander
         public string CurrentPath
         {
             get { return textBoxPath.Text; }
+            private set
+            {
+                if (value != null)
+                    textBoxPath.Text = value;
+            }
         }
 
         public DriveInfo[] DriveList
@@ -46,6 +51,11 @@ namespace TotalCommander
         {
             if (LoadDrives != null)
                DriveList= LoadDrives(sender,e);
+        }
+
+        private void comboBoxDriveSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CurrentPath = DriveList[comboBoxDriveSelect.SelectedIndex].Name;
         }
     }
 }
