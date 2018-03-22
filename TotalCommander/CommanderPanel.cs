@@ -13,6 +13,7 @@ namespace TotalCommander
     public partial class CommanderPanel : UserControl
     {
         public event Func<object, EventArgs, DriveInfo[]> LoadDrives;
+        public event Func<object, EventArgs, string[]> RefreshFilesEvent;
         public CommanderPanel()
         {
             InitializeComponent();
@@ -24,7 +25,10 @@ namespace TotalCommander
             private set
             {
                 if (value != null)
+                {
                     textBoxPath.Text = value;
+                    RefreshFiles(this,null);
+                }           
             }
         }
 
@@ -56,6 +60,19 @@ namespace TotalCommander
         private void comboBoxDriveSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             CurrentPath = DriveList[comboBoxDriveSelect.SelectedIndex].Name;
+        }
+
+        private void RefreshFiles(object sender, EventArgs e)
+        {
+            this.listBoxOutput.Items.Clear();
+            listBoxOutput.Items.AddRange(RefreshFilesEvent(sender,e));
+            
+        }
+
+        private void textBoxPath_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                CurrentPath = textBoxPath.Text;
         }
     }
 }

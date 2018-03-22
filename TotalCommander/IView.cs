@@ -11,7 +11,7 @@ namespace TotalCommander
       //  DriveInfo[] DriveList { get; set; }
 
         event Func<object, EventArgs, DriveInfo[]> GetAllDrives;
-
-
+        event Func<object, EventArgs, string,string[]> RefreshFilesEvent;
+        void ShowError(string message);
     }
 }

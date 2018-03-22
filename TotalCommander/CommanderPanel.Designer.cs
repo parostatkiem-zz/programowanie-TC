@@ -44,6 +44,7 @@
             this.textBoxPath.Name = "textBoxPath";
             this.textBoxPath.Size = new System.Drawing.Size(163, 20);
             this.textBoxPath.TabIndex = 0;
+            this.textBoxPath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPath_KeyPress);
             // 
             // comboBoxDriveSelect
             // 

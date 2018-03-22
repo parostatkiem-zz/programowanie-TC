@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 
 namespace TotalCommander
@@ -19,5 +20,69 @@ namespace TotalCommander
             }
             return drives.ToArray();
         }
+
+        public string[] GetDirectoryContents(string path)
+        {
+            if (!HasReadPermissionOnDir(path)) return null;
+            var output = new List<string>();
+
+            output.AddRange(Directory.GetFiles(path));
+            output.AddRange(Directory.GetDirectories(path));
+            output=output.Select(s => s.Replace(path, "")).ToList();
+            return output.ToArray();
+        }
+
+        private static bool HasWritePermissionOnDir(string path)
+        {
+            var writeAllow = false;
+            var writeDeny = false;
+            var accessControlList = Directory.GetAccessControl(path);
+            if (accessControlList == null)
+                return false;
+            var accessRules = accessControlList.GetAccessRules(true, true, typeof(System.Security.Principal.SecurityIdentifier));
+            if (accessRules == null)
+                return false;
+
+            foreach (FileSystemAccessRule rule in accessRules)
+            {
+                if ((FileSystemRights.Write & rule.FileSystemRights) != FileSystemRights.Write) continue;
+
+                if (rule.AccessControlType == AccessControlType.Allow)
+                    writeAllow = true;
+                else if (rule.AccessControlType == AccessControlType.Deny)
+                    writeDeny = true;
+            }
+
+            return writeAllow && !writeDeny;
+        }
+
+        private static bool HasReadPermissionOnDir(string path)
+        {
+           
+            var readAllow = false;
+            var readDeny = false;
+            try
+            {
+                var accessControlList = Directory.GetAccessControl(path);
+                if (accessControlList == null)
+                    return false;
+                var accessRules = accessControlList.GetAccessRules(true, true, typeof(System.Security.Principal.SecurityIdentifier));
+                if (accessRules == null)
+                    return false;
+
+                foreach (FileSystemAccessRule rule in accessRules)
+                {
+                    if ((FileSystemRights.Read & rule.FileSystemRights) != FileSystemRights.Read) continue;
+
+                    if (rule.AccessControlType == AccessControlType.Allow)
+                        readAllow = true;
+                    else if (rule.AccessControlType == AccessControlType.Deny)
+                        readDeny = true;
+                }
+            }
+            catch(Exception ex) { /*ERROR*/ }
+            return readAllow && !readDeny;
+        }
+       
     }
 }
