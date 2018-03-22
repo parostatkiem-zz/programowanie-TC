@@ -10,24 +10,26 @@ using System.IO;
 
 namespace TotalCommander
 {
-    public partial class View1 : Form
+    public partial class View1 : Form,IView
     {
         public View1()
         {
             InitializeComponent();
-            commanderPanel1.LoadDrives += CommanderPanel_LoadDrivers;
+            commanderPanel1.LoadDrives += CommanderPanel1_LoadDrives; ;
         }
 
-        private void CommanderPanel_LoadDrivers(CommanderPanel obj)
+        public event Func<object, EventArgs, DriveInfo[]> GetAllDrives;
+        private DriveInfo[] CommanderPanel1_LoadDrives(object arg1, EventArgs arg2)
         {
-          var drives = new List<string>();
-            //przeniesc chyba do modelu
-            foreach(DriveInfo dr in DriveInfo.GetDrives() )
-            {
-                if (dr.IsReady)
-                    drives.Add(dr.Name+"   "+dr.VolumeLabel);
-            }
-            obj.DriveList = drives.ToArray();
+           // var cp = arg1 as CommanderPanel;
+            //if (cp == null) return;
+            return GetAllDrives(arg1,arg2);
         }
+
+      
+       
+
+
+
     }
 }

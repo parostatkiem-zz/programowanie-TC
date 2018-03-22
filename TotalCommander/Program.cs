@@ -15,7 +15,10 @@ namespace TotalCommander
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View1());
+            Model model = new Model();
+            View1 view = new View1();
+            Presenter p = new Presenter(model, view);
+            Application.Run(view);
         }
     }
 }

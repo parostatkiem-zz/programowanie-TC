@@ -6,12 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TotalCommander
 {
     public partial class CommanderPanel : UserControl
     {
-        public event Action<CommanderPanel> LoadDrives;
+        public event Func<object, EventArgs, DriveInfo[]> LoadDrives;
         public CommanderPanel()
         {
             InitializeComponent();
@@ -22,22 +23,29 @@ namespace TotalCommander
             get { return textBoxPath.Text; }
         }
 
-        public string[] DriveList
+        public DriveInfo[] DriveList
         {
+            get { return driveList; }
             set
             {
+                if (value == null) return;
+                    driveList = value;
+                //wypelnianie listy
                 comboBoxDriveSelect.Items.Clear();
-                if(value!=null)
-                comboBoxDriveSelect.Items.AddRange(value);
+                foreach (DriveInfo dr in driveList)
+                {
+                    comboBoxDriveSelect.Items.Add(dr.Name+"    "+dr.VolumeLabel);
+                }
             }
         }
+        private DriveInfo[] driveList;
 
-        
+
 
         private void comboBoxDriveSelect_DropDown(object sender, EventArgs e)
         {
             if (LoadDrives != null)
-                LoadDrives(this);
+               DriveList= LoadDrives(sender,e);
         }
     }
 }

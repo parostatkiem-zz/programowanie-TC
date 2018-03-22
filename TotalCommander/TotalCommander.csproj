@@ -50,6 +50,8 @@
     <Compile Include="CommanderPanel.Designer.cs">
       <DependentUpon>CommanderPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="IView.cs" />
+    <Compile Include="Presenter.cs" />
     <Compile Include="View1.cs">
       <SubType>Form</SubType>
     </Compile>
