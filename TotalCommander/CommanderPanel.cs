@@ -14,6 +14,7 @@ namespace TotalCommander
     {
         public event Func<object, EventArgs, DriveInfo[]> LoadDrives;
         public event Func<object, EventArgs, string[]> RefreshFilesEvent;
+        public event Func<object, EventArgs,string> ItemSelectedEvent;
         public CommanderPanel()
         {
             InitializeComponent();
@@ -29,6 +30,15 @@ namespace TotalCommander
                     textBoxPath.Text = value;
                     RefreshFiles(this,null);
                 }           
+            }
+        }
+        public string CurrentSelectedItem
+        {
+            get
+            { 
+                string selectedItem = listBoxOutput.SelectedItem as string;
+                if (selectedItem == null || selectedItem == "") return null; //cos poszło nie tak, nic nie jest zaznaczone
+                return selectedItem;
             }
         }
 
@@ -73,6 +83,13 @@ namespace TotalCommander
         {
             if (e.KeyChar == 13)
                 CurrentPath = textBoxPath.Text;
+        }
+
+        private void listBoxOutput_DoubleClick(object sender, EventArgs e)
+        {
+            if (CurrentSelectedItem != null)
+                CurrentPath = ItemSelectedEvent(this, e);
+
         }
     }
 }

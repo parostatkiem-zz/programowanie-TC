@@ -12,6 +12,7 @@ namespace TotalCommander
 
         event Func<object, EventArgs, DriveInfo[]> GetAllDrives;
         event Func<object, EventArgs, string,string[]> RefreshFilesEvent;
+        event Func<string, string, string> ItemSelectedEvent;
         void ShowError(string message);
     }
 }

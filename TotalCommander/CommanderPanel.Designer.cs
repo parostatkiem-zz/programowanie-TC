@@ -42,15 +42,16 @@
             this.textBoxPath.Location = new System.Drawing.Point(11, 24);
             this.textBoxPath.Margin = new System.Windows.Forms.Padding(8);
             this.textBoxPath.Name = "textBoxPath";
-            this.textBoxPath.Size = new System.Drawing.Size(163, 20);
+            this.textBoxPath.Size = new System.Drawing.Size(270, 20);
             this.textBoxPath.TabIndex = 0;
             this.textBoxPath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPath_KeyPress);
             // 
             // comboBoxDriveSelect
             // 
             this.comboBoxDriveSelect.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.comboBoxDriveSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDriveSelect.FormattingEnabled = true;
-            this.comboBoxDriveSelect.Location = new System.Drawing.Point(53, 55);
+            this.comboBoxDriveSelect.Location = new System.Drawing.Point(160, 55);
             this.comboBoxDriveSelect.Name = "comboBoxDriveSelect";
             this.comboBoxDriveSelect.Size = new System.Drawing.Size(121, 21);
             this.comboBoxDriveSelect.TabIndex = 1;
@@ -63,10 +64,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxOutput.FormattingEnabled = true;
-            this.listBoxOutput.Location = new System.Drawing.Point(14, 102);
+            this.listBoxOutput.Location = new System.Drawing.Point(14, 111);
             this.listBoxOutput.Name = "listBoxOutput";
-            this.listBoxOutput.Size = new System.Drawing.Size(185, 160);
+            this.listBoxOutput.Size = new System.Drawing.Size(292, 251);
             this.listBoxOutput.TabIndex = 2;
+            this.listBoxOutput.DoubleClick += new System.EventHandler(this.listBoxOutput_DoubleClick);
             // 
             // groupBoxInput
             // 
@@ -76,7 +78,7 @@
             this.groupBoxInput.Controls.Add(this.comboBoxDriveSelect);
             this.groupBoxInput.Location = new System.Drawing.Point(14, 12);
             this.groupBoxInput.Name = "groupBoxInput";
-            this.groupBoxInput.Size = new System.Drawing.Size(185, 84);
+            this.groupBoxInput.Size = new System.Drawing.Size(292, 84);
             this.groupBoxInput.TabIndex = 3;
             this.groupBoxInput.TabStop = false;
             this.groupBoxInput.Text = "groupBox1";
@@ -85,11 +87,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.groupBoxInput);
             this.Controls.Add(this.listBoxOutput);
-            this.MaximumSize = new System.Drawing.Size(212, 284);
+            this.MinimumSize = new System.Drawing.Size(170, 288);
             this.Name = "CommanderPanel";
-            this.Size = new System.Drawing.Size(212, 284);
+            this.Size = new System.Drawing.Size(319, 382);
             this.groupBoxInput.ResumeLayout(false);
             this.groupBoxInput.PerformLayout();
             this.ResumeLayout(false);

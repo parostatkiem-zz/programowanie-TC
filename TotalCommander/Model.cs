@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
@@ -25,11 +26,35 @@ namespace TotalCommander
         {
             if (!HasReadPermissionOnDir(path)) return null;
             var output = new List<string>();
-
+            output.Add("[..]");
+            foreach (string item in Directory.GetDirectories(path))
+                output.Add("[" + item + "]");
             output.AddRange(Directory.GetFiles(path));
-            output.AddRange(Directory.GetDirectories(path));
             output=output.Select(s => s.Replace(path, "")).ToList();
             return output.ToArray();
+        }
+
+        public string ItemSelectedAction(string path, string itemName)
+        {
+            string itemNameWithoutBrackets= itemName.Trim(new char[] { '[',']'});
+            FileAttributes attr = File.GetAttributes(path+@"\"+itemNameWithoutBrackets);
+            path=path.TrimEnd('\\'); //usuniecie backspace z obecnej ścieżki
+            if (attr.HasFlag(FileAttributes.Directory))
+            {
+                if (itemNameWithoutBrackets == "..")
+                    return path + @"\"; //kliknięto [..]
+                return path + @"\" + itemNameWithoutBrackets + @"\";
+            }
+            OpenFile(path + @"\" + itemNameWithoutBrackets);
+            return null;
+        }
+
+        private void OpenFile(string path)
+        {
+
+            Process process = new Process();
+            process.StartInfo.FileName = path;
+            process.Start();
         }
 
         private static bool HasWritePermissionOnDir(string path)

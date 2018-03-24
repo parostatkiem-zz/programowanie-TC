@@ -17,9 +17,14 @@ namespace TotalCommander
            
             view.GetAllDrives += View_GetAllDrives;
             view.RefreshFilesEvent += View_RefreshFilesEvent;
+            view.ItemSelectedEvent += View_ItemSelectedEvent;
            
         }
 
+        private string View_ItemSelectedEvent(string arg1, string arg2)
+        {
+            return model.ItemSelectedAction(arg1, arg2);
+        }
 
         private string[] View_RefreshFilesEvent(object arg1, EventArgs arg2, string path)
         {

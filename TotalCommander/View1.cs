@@ -15,19 +15,29 @@ namespace TotalCommander
         public View1()
         {
             InitializeComponent();
-            commanderPanel1.LoadDrives += CommanderPanel_LoadDrives;
-            commanderPanel1.RefreshFilesEvent += CommanderPanel_RefreshFilesEvent;
+            commanderPanelLeft.LoadDrives += CommanderPanel_LoadDrives;
+            commanderPanelLeft.RefreshFilesEvent += CommanderPanel_RefreshFilesEvent;
+            commanderPanelLeft.ItemSelectedEvent += CommanderPanelLeft_ItemSelectedEvent;
 
         }
 
+       
 
         public event Func<object, EventArgs, DriveInfo[]> GetAllDrives;
         public event Func<object, EventArgs,string, string[]> RefreshFilesEvent;
-        
+        public event Func<string, string,string> ItemSelectedEvent;
+
         public void ShowError(string message)
         {
             MessageBox.Show(message, "ERROR");
             //TODO: można zmienić na coś bardziej ambitnego
+        }
+
+        private string CommanderPanelLeft_ItemSelectedEvent(object arg1, EventArgs arg2)
+        {
+            CommanderPanel currentPanel = arg1 as CommanderPanel;
+            if (currentPanel == null) ShowError("No panel provided to CommanderPanelLeft_ItemSelectedEvent");
+            return ItemSelectedEvent(currentPanel.CurrentPath,currentPanel.CurrentSelectedItem);
         }
 
         private string[] CommanderPanel_RefreshFilesEvent(object arg1, EventArgs arg2)
