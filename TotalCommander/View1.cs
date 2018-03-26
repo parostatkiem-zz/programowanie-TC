@@ -19,6 +19,10 @@ namespace TotalCommander
             commanderPanelLeft.RefreshFilesEvent += CommanderPanel_RefreshFilesEvent;
             commanderPanelLeft.ItemSelectedEvent += CommanderPanelLeft_ItemSelectedEvent;
 
+            commanderPanelRight.LoadDrives += CommanderPanel_LoadDrives;
+            commanderPanelRight.RefreshFilesEvent += CommanderPanel_RefreshFilesEvent;
+            commanderPanelRight.ItemSelectedEvent += CommanderPanelLeft_ItemSelectedEvent;
+
         }
 
        

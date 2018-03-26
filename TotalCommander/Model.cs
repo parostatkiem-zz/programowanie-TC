@@ -42,7 +42,9 @@ namespace TotalCommander
             if (attr.HasFlag(FileAttributes.Directory))
             {
                 if (itemNameWithoutBrackets == "..")
-                    return path + @"\"; //kliknięto [..]
+                    try
+                    { return Directory.GetParent(path).ToString(); }
+                    catch { return null; } //nie mozna przejść do folderu wyżej
                 return path + @"\" + itemNameWithoutBrackets + @"\";
             }
             OpenFile(path + @"\" + itemNameWithoutBrackets);
