@@ -12,9 +12,12 @@ namespace TotalCommander
 {
     public partial class CommanderPanel : UserControl
     {
+        #region Public
+        #region Events
         public event Func<object, EventArgs, DriveInfo[]> LoadDrives;
         public event Func<object, EventArgs, string[]> RefreshFilesEvent;
         public event Func<object, EventArgs,string> ItemSelectedEvent;
+        #endregion
         public CommanderPanel()
         {
             InitializeComponent();
@@ -57,9 +60,13 @@ namespace TotalCommander
                 }
             }
         }
+
+        #endregion
+        #region Private
+        #region Fields
         private DriveInfo[] driveList;
 
-
+        #endregion
 
         private void comboBoxDriveSelect_DropDown(object sender, EventArgs e)
         {
@@ -91,5 +98,6 @@ namespace TotalCommander
                 CurrentPath = ItemSelectedEvent(this, e);
 
         }
+        #endregion
     }
 }

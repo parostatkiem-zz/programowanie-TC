@@ -21,6 +21,8 @@ namespace TotalCommander
            
         }
 
+
+        #region Events
         private string View_ItemSelectedEvent(string arg1, string arg2)
         {
             return model.ItemSelectedAction(arg1, arg2);
@@ -41,5 +43,6 @@ namespace TotalCommander
         {
             return model.GetAvailableDrives();
         }
+        #endregion
     }
 }

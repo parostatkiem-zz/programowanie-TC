@@ -10,6 +10,7 @@ namespace TotalCommander
 {
     class Model
     {
+        #region Public
         public DriveInfo[] GetAvailableDrives()
         {
             var drives = new List<DriveInfo>();
@@ -51,6 +52,9 @@ namespace TotalCommander
             return null;
         }
 
+        #endregion
+
+        #region HelperFunctions
         private void OpenFile(string path)
         {
 
@@ -110,6 +114,6 @@ namespace TotalCommander
             catch(Exception ex) { /*ERROR*/ }
             return readAllow && !readDeny;
         }
-       
+        #endregion
     }
 }

@@ -12,6 +12,12 @@ namespace TotalCommander
 {
     public partial class View1 : Form,IView
     {
+        #region Public
+        #region Events
+        public event Func<object, EventArgs, DriveInfo[]> GetAllDrives;
+        public event Func<object, EventArgs, string, string[]> RefreshFilesEvent;
+        public event Func<string, string, string> ItemSelectedEvent;
+        #endregion
         public View1()
         {
             InitializeComponent();
@@ -25,18 +31,15 @@ namespace TotalCommander
 
         }
 
-       
-
-        public event Func<object, EventArgs, DriveInfo[]> GetAllDrives;
-        public event Func<object, EventArgs,string, string[]> RefreshFilesEvent;
-        public event Func<string, string,string> ItemSelectedEvent;
-
         public void ShowError(string message)
         {
             MessageBox.Show(message, "ERROR");
             //TODO: można zmienić na coś bardziej ambitnego
         }
 
+        #endregion
+
+        #region Private
         private string CommanderPanelLeft_ItemSelectedEvent(object arg1, EventArgs arg2)
         {
             CommanderPanel currentPanel = arg1 as CommanderPanel;
@@ -59,10 +62,7 @@ namespace TotalCommander
             return GetAllDrives(arg1,arg2);
         }
 
-      
-       
-
-
+        #endregion
 
     }
 }
