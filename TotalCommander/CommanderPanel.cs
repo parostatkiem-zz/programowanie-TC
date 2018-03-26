@@ -58,8 +58,9 @@ namespace TotalCommander
                 comboBoxDriveSelect.Items.Clear();
                 foreach (DriveInfo dr in driveList)
                 {
-                    comboBoxDriveSelect.Items.Add(dr.Name+"    "+dr.VolumeLabel);
+                    comboBoxDriveSelect.Items.Add(dr.Name+"  "+dr.VolumeLabel);
                 }
+              
             }
         }
 
@@ -79,6 +80,7 @@ namespace TotalCommander
         {
             if (LoadDrives != null)
                DriveList= LoadDrives(sender,e);
+           
         }
 
         private void comboBoxDriveSelect_SelectedIndexChanged(object sender, EventArgs e)

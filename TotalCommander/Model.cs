@@ -68,7 +68,10 @@ namespace TotalCommander
                     if(sourceItem==null | IsValidDirectory(sourcePath + sourceItem))
                     {
                         //kopiujemy folder
-                       CopyFolder(sourcePath + sourceItem, destinationPath,moveInsteadOfCopying);
+                        string dirName = new DirectoryInfo(sourcePath + sourceItem).Name;
+                        Directory.CreateDirectory(Path.Combine(destinationPath, dirName));
+                        destinationPath = Path.Combine(destinationPath, dirName)+'\\';
+                        CopyFolder(sourcePath + sourceItem, destinationPath,moveInsteadOfCopying);
                         
                        
                     }
@@ -190,19 +193,28 @@ namespace TotalCommander
         {
             try
             {
-                string dirName = new DirectoryInfo(source).Name;
-                Directory.CreateDirectory(Path.Combine(destination, dirName));
-                destination = Path.Combine(destination, dirName);
-                foreach (string dir in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
-                {
-                   Directory.CreateDirectory(Path.Combine(destination, dir.Substring(source.Length)));
+                string[] sourceFiles = Directory.GetFiles(source, "*", SearchOption.AllDirectories);
 
-                }
+                Array.ForEach(sourceFiles, (originalFileLocation) =>
+                {        
+                    FileInfo originalFile = new FileInfo(originalFileLocation);
+                    FileInfo destFile = new FileInfo(originalFileLocation.Replace(source, destination));
 
-                foreach (string file_name in Directory.GetFiles(source, "*.*",SearchOption.AllDirectories))
-                {
-                   File.Copy(file_name, Path.Combine(destination, file_name.Substring(source.Length)));
-                }
+                    if (destFile.Exists)
+                    {
+                        
+                        if (originalFile.Length > destFile.Length)
+                        {
+                            originalFile.CopyTo(destFile.FullName, true);
+                        }
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(destFile.DirectoryName); 
+                        originalFile.CopyTo(destFile.FullName, false); 
+                    }
+
+                });
                 if (moveInsteadOfCopying) Directory.Delete(source);
                 return true;
             }
