@@ -17,6 +17,7 @@ namespace TotalCommander
         public event Func<object, EventArgs, DriveInfo[]> LoadDrives;
         public event Func<object, EventArgs, string[]> RefreshFilesEvent;
         public event Func<object, EventArgs,string> ItemSelectedEvent;
+        public event Action<object,bool> CopyTrigger;
         #endregion
         public CommanderPanel()
         {
@@ -28,8 +29,9 @@ namespace TotalCommander
             get { return textBoxPath.Text; }
             private set
             {
-                if (value != null)
+                if (value != null && value!="")
                 {
+                    if (value[value.Length - 1] != '\\') value += '\\';
                     textBoxPath.Text = value;
                     RefreshFiles(this,null);
                 }           
@@ -59,6 +61,11 @@ namespace TotalCommander
                     comboBoxDriveSelect.Items.Add(dr.Name+"    "+dr.VolumeLabel);
                 }
             }
+        }
+
+        public void RefreshOutput()
+        {
+            CurrentPath = CurrentPath;//odswieza widok
         }
 
         #endregion
@@ -98,6 +105,26 @@ namespace TotalCommander
                 CurrentPath = ItemSelectedEvent(this, e);
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CopyTrigger(this,false);
+           
+        }
+
         #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CopyTrigger(this, true);
+        }
+
+        private void listBoxOutput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)//enter
+                listBoxOutput_DoubleClick(sender, e);
+
+
+        }
     }
 }

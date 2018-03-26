@@ -47,14 +47,14 @@
             // splitContainerMain.Panel1
             // 
             this.splitContainerMain.Panel1.Controls.Add(this.commanderPanelLeft);
-            this.splitContainerMain.Panel1MinSize = 180;
+            this.splitContainerMain.Panel1MinSize = 396;
             // 
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.commanderPanelRight);
-            this.splitContainerMain.Panel2MinSize = 180;
-            this.splitContainerMain.Size = new System.Drawing.Size(819, 493);
-            this.splitContainerMain.SplitterDistance = 368;
+            this.splitContainerMain.Panel2MinSize = 396;
+            this.splitContainerMain.Size = new System.Drawing.Size(796, 493);
+            this.splitContainerMain.SplitterDistance = 396;
             this.splitContainerMain.TabIndex = 1;
             // 
             // commanderPanelLeft
@@ -68,7 +68,7 @@
             this.commanderPanelLeft.MinimumSize = new System.Drawing.Size(170, 288);
             this.commanderPanelLeft.Name = "commanderPanelLeft";
             this.commanderPanelLeft.Padding = new System.Windows.Forms.Padding(5);
-            this.commanderPanelLeft.Size = new System.Drawing.Size(360, 512);
+            this.commanderPanelLeft.Size = new System.Drawing.Size(388, 512);
             this.commanderPanelLeft.TabIndex = 0;
             // 
             // commanderPanelRight
@@ -82,16 +82,16 @@
             this.commanderPanelRight.MinimumSize = new System.Drawing.Size(170, 288);
             this.commanderPanelRight.Name = "commanderPanelRight";
             this.commanderPanelRight.Padding = new System.Windows.Forms.Padding(5);
-            this.commanderPanelRight.Size = new System.Drawing.Size(436, 512);
+            this.commanderPanelRight.Size = new System.Drawing.Size(385, 512);
             this.commanderPanelRight.TabIndex = 1;
             // 
             // View1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 513);
+            this.ClientSize = new System.Drawing.Size(816, 513);
             this.Controls.Add(this.splitContainerMain);
-            this.MinimumSize = new System.Drawing.Size(401, 328);
+            this.MinimumSize = new System.Drawing.Size(832, 328);
             this.Name = "View1";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Mini Total Commander";

@@ -18,9 +18,11 @@ namespace TotalCommander
             view.GetAllDrives += View_GetAllDrives;
             view.RefreshFilesEvent += View_RefreshFilesEvent;
             view.ItemSelectedEvent += View_ItemSelectedEvent;
+            view.CopySomething += View_CopySomething;
            
         }
 
+       
 
         #region Events
         private string View_ItemSelectedEvent(string arg1, string arg2)
@@ -34,7 +36,7 @@ namespace TotalCommander
             if (output == null)
             {
                 view.ShowError("Nie udało się wczytać zawartości wskazanego folderu.\nByć może nie masz uprawnień lub folder nie istnieje");
-                output = new string[] {""};
+                output = new string[] {"[..]"};
             }
             return output;
         }
@@ -43,6 +45,11 @@ namespace TotalCommander
         {
             return model.GetAvailableDrives();
         }
+        private void View_CopySomething(string sourcePath, string sourceItem, string destPath, bool moveInsteadOfCopying = false)
+        {
+            if (!model.Copy(sourcePath, sourceItem, destPath,moveInsteadOfCopying)) view.ShowError("Nie udało się wykonać operacji.\nCzy na pewno posiadasz prawa do jej wykonania?");
+        }
+
         #endregion
     }
 }
