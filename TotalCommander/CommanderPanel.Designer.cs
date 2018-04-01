@@ -32,10 +32,10 @@
             this.comboBoxDriveSelect = new System.Windows.Forms.ComboBox();
             this.listBoxOutput = new System.Windows.Forms.ListBox();
             this.groupBoxInput = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonNewFolder = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonMove = new System.Windows.Forms.Button();
+            this.buttonCopy = new System.Windows.Forms.Button();
             this.groupBoxInput.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,10 +87,10 @@
             // 
             this.groupBoxInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxInput.Controls.Add(this.button4);
-            this.groupBoxInput.Controls.Add(this.button3);
-            this.groupBoxInput.Controls.Add(this.button2);
-            this.groupBoxInput.Controls.Add(this.button1);
+            this.groupBoxInput.Controls.Add(this.buttonNewFolder);
+            this.groupBoxInput.Controls.Add(this.buttonDelete);
+            this.groupBoxInput.Controls.Add(this.buttonMove);
+            this.groupBoxInput.Controls.Add(this.buttonCopy);
             this.groupBoxInput.Controls.Add(this.textBoxPath);
             this.groupBoxInput.Controls.Add(this.comboBoxDriveSelect);
             this.groupBoxInput.Location = new System.Drawing.Point(14, 12);
@@ -100,51 +100,53 @@
             this.groupBoxInput.TabStop = false;
             this.groupBoxInput.Text = "Panel kontrolny";
             // 
-            // button4
+            // buttonNewFolder
             // 
-            this.button4.BackColor = System.Drawing.Color.Khaki;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(178, 53);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(76, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Nowy Folder";
-            this.button4.UseVisualStyleBackColor = false;
+            this.buttonNewFolder.BackColor = System.Drawing.Color.Khaki;
+            this.buttonNewFolder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonNewFolder.Location = new System.Drawing.Point(178, 53);
+            this.buttonNewFolder.Name = "buttonNewFolder";
+            this.buttonNewFolder.Size = new System.Drawing.Size(76, 23);
+            this.buttonNewFolder.TabIndex = 5;
+            this.buttonNewFolder.Text = "Nowy Folder";
+            this.buttonNewFolder.UseVisualStyleBackColor = false;
+            this.buttonNewFolder.Click += new System.EventHandler(this.buttonNewFolder_Click);
             // 
-            // button3
+            // buttonDelete
             // 
-            this.button3.BackColor = System.Drawing.Color.OrangeRed;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(128, 53);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(44, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Usuń";
-            this.button3.UseVisualStyleBackColor = false;
+            this.buttonDelete.BackColor = System.Drawing.Color.OrangeRed;
+            this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDelete.Location = new System.Drawing.Point(128, 53);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(44, 23);
+            this.buttonDelete.TabIndex = 4;
+            this.buttonDelete.Text = "Usuń";
+            this.buttonDelete.UseVisualStyleBackColor = false;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // button2
+            // buttonMove
             // 
-            this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(65, 53);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Przenieś";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonMove.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonMove.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonMove.Location = new System.Drawing.Point(65, 53);
+            this.buttonMove.Name = "buttonMove";
+            this.buttonMove.Size = new System.Drawing.Size(57, 23);
+            this.buttonMove.TabIndex = 3;
+            this.buttonMove.Text = "Przenieś";
+            this.buttonMove.UseVisualStyleBackColor = false;
+            this.buttonMove.Click += new System.EventHandler(this.buttonMove_Click);
             // 
-            // button1
+            // buttonCopy
             // 
-            this.button1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(11, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Kopiuj";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonCopy.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.buttonCopy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCopy.Location = new System.Drawing.Point(11, 53);
+            this.buttonCopy.Name = "buttonCopy";
+            this.buttonCopy.Size = new System.Drawing.Size(48, 23);
+            this.buttonCopy.TabIndex = 2;
+            this.buttonCopy.Text = "Kopiuj";
+            this.buttonCopy.UseVisualStyleBackColor = false;
+            this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
             // 
             // CommanderPanel
             // 
@@ -168,9 +170,9 @@
         private System.Windows.Forms.ComboBox comboBoxDriveSelect;
         private System.Windows.Forms.ListBox listBoxOutput;
         private System.Windows.Forms.GroupBox groupBoxInput;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonNewFolder;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonMove;
+        private System.Windows.Forms.Button buttonCopy;
     }
 }

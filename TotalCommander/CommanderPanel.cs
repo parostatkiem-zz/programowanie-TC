@@ -18,6 +18,8 @@ namespace TotalCommander
         public event Func<object, EventArgs, string[]> RefreshFilesEvent;
         public event Func<object, EventArgs,string> ItemSelectedEvent;
         public event Action<object,bool> CopyTrigger;
+        public event Action<object> DeleteTrigger;
+        public event Action<object,string> NewFolderTrigger;
         #endregion
         public CommanderPanel()
         {
@@ -108,17 +110,19 @@ namespace TotalCommander
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonCopy_Click(object sender, EventArgs e)
         {
-            CopyTrigger(this,false);
+            if (CurrentPath != "")
+                CopyTrigger(this,false);
            
         }
 
         #endregion
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonMove_Click(object sender, EventArgs e)
         {
-            CopyTrigger(this, true);
+            if (CurrentPath != "")
+                CopyTrigger(this, true);
         }
 
         private void listBoxOutput_KeyPress(object sender, KeyPressEventArgs e)
@@ -127,6 +131,24 @@ namespace TotalCommander
                 listBoxOutput_DoubleClick(sender, e);
 
 
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if(CurrentPath!="")
+                DeleteTrigger(this);
+        }
+
+        private void buttonNewFolder_Click(object sender, EventArgs e)
+        {
+
+            FormPrompt folderNameDialog = new FormPrompt("Podaj nazwę tworzonego folderu");
+
+            if (folderNameDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                NewFolderTrigger(this, folderNameDialog.textBoxInput.Text);
+            }
+            folderNameDialog.Dispose();
         }
     }
 }

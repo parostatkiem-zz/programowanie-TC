@@ -10,7 +10,8 @@ namespace TotalCommander
 {
     class Model
     {
-        const short MaxNumberOfIdenticalFiles= 30; // plik(1).txt
+        private const short MaxNumberOfIdenticalFiles= 30; // plik(1).txt plik(2).txt  itd
+
         #region PublicMethods
         public DriveInfo[] GetAvailableDrives()
         {
@@ -96,6 +97,42 @@ namespace TotalCommander
             catch { return false; }
         }
 
+        public bool Delete(string sourcePath, string sourceItem)
+        {
+            if (sourceItem == null) sourceItem = sourceItem.Trim(new char[] { '[', ']' });
+            else sourceItem = "";
+            try
+            {
+                if (IsValidDirectory(sourcePath))
+                {
+                    string combinedPath = Path.Combine(sourcePath, sourceItem);
+                    //sciezki sa poprawne, mozna dzialac dalej
+                    if (sourceItem == "" | IsValidDirectory(combinedPath))
+                    {
+                        //usuwamy folder
+                        Directory.Delete(combinedPath,true);
+                    }
+                    else
+                    {
+                        //usuwamy plik
+                        File.Delete(combinedPath);
+                    }
+                }
+                else return false;
+               return true;
+            }
+            catch { }
+            return false;
+        }
+        public bool CreateFolder(string path)
+        {
+            try
+            {
+                Directory.CreateDirectory(path);
+            }
+            catch { return false; }
+            return true;
+        }
         #endregion
 
         #region HelperFunctions
