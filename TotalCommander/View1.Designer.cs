@@ -62,8 +62,8 @@
             // 
             // progressBarIsWorking
             // 
-            this.progressBarIsWorking.AccessibleDescription = "desc";
-            this.progressBarIsWorking.AccessibleName = "name";
+            this.progressBarIsWorking.AccessibleDescription = "";
+            this.progressBarIsWorking.AccessibleName = "";
             this.progressBarIsWorking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBarIsWorking.BackColor = System.Drawing.SystemColors.Control;
