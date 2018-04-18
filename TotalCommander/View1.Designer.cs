@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.progressBarIsWorking = new System.Windows.Forms.ProgressBar();
             this.commanderPanelLeft = new TotalCommander.CommanderPanel();
             this.commanderPanelRight = new TotalCommander.CommanderPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -39,9 +40,11 @@
             // 
             // splitContainerMain
             // 
+            this.splitContainerMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainerMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMain.Location = new System.Drawing.Point(10, 10);
+            this.splitContainerMain.Location = new System.Drawing.Point(10, 13);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -53,9 +56,26 @@
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.commanderPanelRight);
             this.splitContainerMain.Panel2MinSize = 414;
-            this.splitContainerMain.Size = new System.Drawing.Size(834, 492);
+            this.splitContainerMain.Size = new System.Drawing.Size(834, 489);
             this.splitContainerMain.SplitterDistance = 414;
             this.splitContainerMain.TabIndex = 1;
+            // 
+            // progressBarIsWorking
+            // 
+            this.progressBarIsWorking.AccessibleDescription = "desc";
+            this.progressBarIsWorking.AccessibleName = "name";
+            this.progressBarIsWorking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBarIsWorking.BackColor = System.Drawing.SystemColors.Control;
+            this.progressBarIsWorking.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.progressBarIsWorking.Location = new System.Drawing.Point(10, 1);
+            this.progressBarIsWorking.MarqueeAnimationSpeed = 1;
+            this.progressBarIsWorking.Name = "progressBarIsWorking";
+            this.progressBarIsWorking.Size = new System.Drawing.Size(834, 10);
+            this.progressBarIsWorking.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBarIsWorking.TabIndex = 2;
+            this.progressBarIsWorking.Value = 20;
+            this.progressBarIsWorking.Visible = false;
             // 
             // commanderPanelLeft
             // 
@@ -68,7 +88,7 @@
             this.commanderPanelLeft.MinimumSize = new System.Drawing.Size(170, 288);
             this.commanderPanelLeft.Name = "commanderPanelLeft";
             this.commanderPanelLeft.Padding = new System.Windows.Forms.Padding(5);
-            this.commanderPanelLeft.Size = new System.Drawing.Size(406, 511);
+            this.commanderPanelLeft.Size = new System.Drawing.Size(406, 508);
             this.commanderPanelLeft.TabIndex = 0;
             // 
             // commanderPanelRight
@@ -82,7 +102,7 @@
             this.commanderPanelRight.MinimumSize = new System.Drawing.Size(170, 288);
             this.commanderPanelRight.Name = "commanderPanelRight";
             this.commanderPanelRight.Padding = new System.Windows.Forms.Padding(5);
-            this.commanderPanelRight.Size = new System.Drawing.Size(405, 511);
+            this.commanderPanelRight.Size = new System.Drawing.Size(405, 508);
             this.commanderPanelRight.TabIndex = 1;
             // 
             // View1
@@ -90,6 +110,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(854, 512);
+            this.Controls.Add(this.progressBarIsWorking);
             this.Controls.Add(this.splitContainerMain);
             this.MinimumSize = new System.Drawing.Size(832, 328);
             this.Name = "View1";
@@ -108,6 +129,7 @@
         private CommanderPanel commanderPanelLeft;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private CommanderPanel commanderPanelRight;
+        private System.Windows.Forms.ProgressBar progressBarIsWorking;
     }
 }
 

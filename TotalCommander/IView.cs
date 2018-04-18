@@ -16,7 +16,14 @@ namespace TotalCommander
         event Action<string, string,string,bool> CopySomething;
         event Action<string, string> DeleteSomething;
         event Action<string> CreateNewFolder;
+
         void ShowError(string message);
         bool ShowConfirmation(string message);
+
+        void AsyncOperationBegin();
+        void AsyncOperationEnd();
+
+
+
     }
 }

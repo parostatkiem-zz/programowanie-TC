@@ -28,9 +28,12 @@ namespace TotalCommander
         public string[] GetDirectoryContents(string path)
         {
            // if (!IsValidDirectory(path)) return null;
+           
             try { 
             var output = new List<string>();
-            output.Add("[..]");
+                var currentDirInfo = new DirectoryInfo(path);
+            if (currentDirInfo.Root.Name != currentDirInfo.Name) //nie można przejść wyżej jesli ścieżką jest litera dysku
+                output.Add("[..]");
             foreach (string item in Directory.GetDirectories(path,"*", System.IO.SearchOption.TopDirectoryOnly))
                 output.Add("[" + item + "]");
             output.AddRange(Directory.GetFiles(path));
@@ -57,7 +60,7 @@ namespace TotalCommander
             return null;
         }
 
-        public bool Copy(string sourcePath,string sourceItem,string destinationPath,bool moveInsteadOfCopying=false)
+        public  bool Copy(string sourcePath,string sourceItem,string destinationPath,bool moveInsteadOfCopying=false)
         {
             if(sourceItem!=null) sourceItem = sourceItem.Trim(new char[] { '[', ']' });
             //destinationPath = destinationPath.TrimEnd('\\');
@@ -99,26 +102,24 @@ namespace TotalCommander
 
         public bool Delete(string sourcePath, string sourceItem)
         {
-            if (sourceItem == null) sourceItem = sourceItem.Trim(new char[] { '[', ']' });
+            Console.WriteLine("Source item: " + sourceItem);
+            if (sourceItem != null) sourceItem = sourceItem.Trim(new char[] { '[', ']' });
             else sourceItem = "";
             try
             {
-                if (IsValidDirectory(sourcePath))
+                string combinedPath = Path.Combine(sourcePath, sourceItem);            
+                //sciezki sa poprawne, mozna dzialac dalej
+
+                if (sourceItem == "" | IsValidDirectory(combinedPath))
                 {
-                    string combinedPath = Path.Combine(sourcePath, sourceItem);
-                    //sciezki sa poprawne, mozna dzialac dalej
-                    if (sourceItem == "" | IsValidDirectory(combinedPath))
-                    {
-                        //usuwamy folder
-                        Directory.Delete(combinedPath,true);
-                    }
-                    else
-                    {
-                        //usuwamy plik
-                        File.Delete(combinedPath);
-                    }
+                    //usuwamy folder
+                    Directory.Delete(combinedPath,true);
                 }
-                else return false;
+                else
+                {
+                    //usuwamy plik
+                    File.Delete(combinedPath);
+                }                
                return true;
             }
             catch { }

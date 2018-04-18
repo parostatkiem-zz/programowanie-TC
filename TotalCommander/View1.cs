@@ -20,6 +20,7 @@ namespace TotalCommander
         public event Action<string,string,string,bool> CopySomething;
         public event Action<string, string> DeleteSomething;
         public event Action<string> CreateNewFolder;
+        
         #endregion
         public View1()
         {
@@ -96,7 +97,7 @@ namespace TotalCommander
                 return;
             }
             CopySomething(sourcePanel.CurrentPath, sourcePanel.CurrentSelectedItem, destinationPanel.CurrentPath,moveInsteadOfCopying);
-            RefreshBothPanels();
+            //RefreshBothPanels();
         }
 
         private void CommanderPanel_DeleteTrigger(object obj)
@@ -104,7 +105,7 @@ namespace TotalCommander
             CommanderPanel sourcePanel = obj as CommanderPanel;
             if (sourcePanel == null) return;
             DeleteSomething(sourcePanel.CurrentPath, sourcePanel.CurrentSelectedItem);
-            RefreshBothPanels();
+           // RefreshBothPanels();
         }
         private void CommanderPanel_NewFolderTrigger(object obj, string folderName)
         {
@@ -122,6 +123,17 @@ namespace TotalCommander
         {
             commanderPanelLeft.RefreshOutput();
             commanderPanelRight.RefreshOutput();
+        }
+
+        public void AsyncOperationBegin()
+        {
+            progressBarIsWorking.Visible = true;
+        }
+
+        public void AsyncOperationEnd()
+        {
+            progressBarIsWorking.Visible = false;
+            RefreshBothPanels();
         }
         #endregion
 
